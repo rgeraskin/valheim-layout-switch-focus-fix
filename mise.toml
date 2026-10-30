@@ -1,0 +1,24 @@
+[tools]
+dotnet = "10"
+
+[env]
+# the game's Managed/ and BepInEx/core the build compiles against: valheim-dev-harness's copy (.deps links to it)
+VALHEIM_DIR = "{{config_root}}/.deps"
+
+[tasks.build]
+description = "Build the plugin"
+run = "dotnet build LayoutSwitchFocusFix/LayoutSwitchFocusFix.csproj -c Release"
+
+[tasks.build-harness]
+description = "Build the dev harness companion (needs valheim-dev-harness built next to this repo)"
+depends = ["build"]
+run = "dotnet build tools/DevHarness/LayoutSwitchFocusFixHarness.csproj -c Release"
+
+[tasks.images]
+description = "Mod page images from .harness/shots (see CLAUDE.md)"
+run = "uv run tools/make_images.py .harness/shots .harness/fonts"
+
+[tasks.package]
+description = "Make the Thunderstore zip in dist/"
+depends = ["build"]
+run = "tools/package.sh"

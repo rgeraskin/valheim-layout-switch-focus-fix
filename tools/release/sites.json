@@ -1,0 +1,24 @@
+{
+  "thunderstore": {
+    "url": "https://thunderstore.io",
+    "team": "rgeraskin",
+    "community": "valheim",
+    "categories": ["mods", "client-side", "utility", "tweaks", "deep-north-update"]
+  },
+  "hexium": {
+    "url": "https://valheim.hexium.gg",
+    "team": "rgeraskin",
+    "community": "valheim",
+    "categories": ["Client-only", "Quality of Life", "User Interface", "Open Source", "Valheim 1.0"],
+    "installLocation": "client"
+  },
+  "nexus": {
+    "url": "https://api.nexusmods.com",
+    "game": "valheim",
+    "modId": 4716,
+    "modFileId": "8272593",
+    "pageDescription": "package/nexus-description.bbcode",
+    "name": "LayoutSwitchFocusFix {version}",
+    "description": "LayoutSwitchFocusFix {version}: the plugin. Needs BepInExPack Valheim. Client-side: install it on your game only, nothing on the server."
+  }
+}

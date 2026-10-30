@@ -1,0 +1,53 @@
+[size=4][b]Description[/b][/size]
+Typing no longer stops when you switch the keyboard layout.
+
+In vanilla Valheim, switching the keyboard layout while typing (Alt+Shift, Win+Space, Ctrl+Space, Caps Lock or any other hotkey) drops the text field you're typing in: the next keys go to the game instead, and you have to click the field again. It happens everywhere:
+[list]
+[*]chat and the F5 console
+[*]map pin names
+[*]sign and portal texts
+[*]the build menu (hammer) search
+[*]the crafting search of mods like Workbenches+
+[*]any other mod's text field
+[/list]
+This mod fixes the cause, so the field simply keeps focus and you keep typing in the new layout.
+
+[size=4][b]What's going on[/b][/size]
+A layout switch makes Unity's Input System report a keyboard [i]configuration change[/i]. Valheim treats every such change as a switch between keyboard and gamepad, and the build menu answers it by clearing the UI selection, which takes keyboard focus away from whatever field you're in. The mod lets the build menu do everything it did except that, and only while you're typing with the keyboard. Switching to a gamepad behaves as before.
+
+[size=4][b]Notes[/b][/size]
+[list]
+[*][b]Client-side only[/b]: nothing on the server, safe in multiplayer.
+[*]No per-frame work: one patch on a game method that runs only when the layout changes.
+[*]Tested on Windows and macOS. On Linux it does the same if the game sees layout switches there; otherwise there's nothing to fix.
+[*]Works alongside ConsoleFix and other input mods.
+[*]Config [font=Courier New]BepInEx/config/rgeraskin.LayoutSwitchFocusFix.cfg[/font]: [b]Enabled[/b], and [b]Debug.Log[/b] to log layout changes and every focus loss with its cause (helps with bug reports).
+[/list]
+
+[size=4][b]Installation[/b][/size]
+Needs [url=https://www.nexusmods.com/valheim/mods/3605]BepInExPack Valheim[/url]. Install with Vortex, or unpack the archive into the game folder: the plugin goes to [font=Courier New]BepInEx/plugins/LayoutSwitchFocusFix/[/font].
+
+Source code and issues: [url=https://github.com/rgeraskin/valheim-layout-switch-focus-fix]GitHub[/url].
+
+[line]
+[size=4][b]Русская версия[/b][/size]
+В ванильном Valheim смена раскладки во время ввода (Alt+Shift, Win+Space, Ctrl+Space, Caps Lock или любая другая комбинация) сбрасывает фокус с поля ввода: следующие нажатия уходят в игру, приходится заново кликать в поле. Это происходит везде:
+[list]
+[*]чат и консоль F5
+[*]названия меток на карте
+[*]текст табличек и порталов
+[*]поиск в меню строительства (молот)
+[*]поиск рецептов в модах вроде Workbenches+
+[*]поля ввода любых других модов
+[/list]
+Мод устраняет причину: поле просто не теряет фокус, и вы продолжаете печатать в новой раскладке.
+
+[b]В чём дело.[/b] При смене раскладки Input System в Unity сообщает об [i]изменении конфигурации[/i] клавиатуры. Valheim принимает любое такое изменение за переключение между клавиатурой и геймпадом, и меню строительства в ответ сбрасывает выделение в интерфейсе, а вместе с ним и фокус с поля ввода. Мод оставляет меню строительства всё, кроме этого сброса, и только пока вы печатаете с клавиатуры. Переключение на геймпад работает как раньше.
+
+[list]
+[*][b]Только на клиенте[/b]: на сервер ставить не нужно, безопасен в мультиплеере.
+[*]Ничего не делает каждый кадр: один патч на метод игры, который вызывается только при смене раскладки.
+[*]Проверен на Windows и macOS.
+[*]Совместим с ConsoleFix и другими модами ввода.
+[*]Нужен [url=https://www.nexusmods.com/valheim/mods/3605]BepInExPack Valheim[/url]. Установка через Vortex или распаковкой архива в папку игры.
+[/list]
