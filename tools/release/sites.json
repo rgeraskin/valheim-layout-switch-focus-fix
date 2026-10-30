@@ -9,7 +9,7 @@
     "url": "https://valheim.hexium.gg",
     "team": "rgeraskin",
     "community": "valheim",
-    "categories": ["Client-only", "Quality of Life", "User Interface", "Open Source", "Valheim 1.0"],
+    "categories": ["Quality of Life", "User Interface", "Open Source", "Valheim 1.0"],
     "installLocation": "client"
   },
   "nexus": {
