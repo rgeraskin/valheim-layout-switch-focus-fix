@@ -144,7 +144,8 @@ static async Task PublishThunderstore(HttpClient http, JsonNode site, Release re
         throw new InvalidOperationException($"{Name}: the token is not a service account of team {team}.");
     }
 
-    await CategoriesExist(http, Name, $"{url}/api/experimental/community/{community}/category/", "slug", categories);
+    var slugs = await CategoriesExist(http, Name, $"{url}/api/experimental/community/{community}/category/", "slug", categories);
+    categories = await KeepListed(http, Name, $"{url}/api/experimental/package/{team}/{release.Name}/", community, slugs, categories);
     // Thunderstore's own checks of the manifest and icon (its README check is broken on its side: always 500).
     var checks = new (string What, string Path, JsonObject Body)[]
     {
@@ -186,7 +187,10 @@ static async Task PublishHexium(HttpClient http, JsonNode site, Release release,
     string token = Token("HEXIUM_TOKEN");
     // Hidden versions (every upload until it is unhidden on hexium.gg) do not show here: the upload is refused then.
     await NotThereYet(http, Name, $"{url}/api/experimental/package/{team}/{release.Name}/{release.Version}/");
-    await CategoriesExist(http, Name, $"{url}/api/experimental/community/{community}/category/", "name", categories);
+    var names = await CategoriesExist(http, Name, $"{url}/api/experimental/community/{community}/category/", "name", categories);
+    // the listing shows the install location among its categories ("Client-only"): installLocation sets that one
+    categories = await KeepListed(http, Name, $"{url}/api/experimental/package/{team}/{release.Name}/", community, names, categories,
+        skip: c => c.StartsWith("Client", StringComparison.Ordinal) || c.StartsWith("Server", StringComparison.Ordinal));
     // Hexium counts the manifest description in UTF-8 bytes, not characters: 232 characters with a Cyrillic part were
     // 265 bytes, and the upload was refused after the other sites had taken the version.
     const int DescriptionBytes = 256;
@@ -239,25 +243,49 @@ static async Task NotThereYet(HttpClient http, string site, string url)
     }
 }
 
-static async Task CategoriesExist(HttpClient http, string site, string url, string key, string[] wanted)
+// The site's categories as name → the key a submission uses (key: "slug" or "name"); every wanted key must be one.
+static async Task<Dictionary<string, string>> CategoriesExist(HttpClient http, string site, string url, string key, string[] wanted)
 {
-    var known = new HashSet<string>();
+    var byName = new Dictionary<string, string>();
     for (string? page = url; page is not null;)
     {
         var answer = await Call(http, site, Get(page));
         foreach (var category in answer!["results"]!.AsArray())
         {
-            known.Add((string)category![key]!);
+            byName[(string)category!["name"]!] = (string)category[key]!;
         }
 
         page = (string?)(answer["pagination"]?["next_link"] ?? answer["next"]);
     }
 
-    string[] missing = [.. wanted.Where(c => !known.Contains(c))];
+    string[] missing = [.. wanted.Where(c => !byName.ContainsValue(c))];
     if (missing.Length > 0)
     {
         throw new InvalidOperationException($"{site} has no category {string.Join(", ", missing)} (tools/release/sites.json).");
     }
+
+    return byName;
+}
+
+// A release sends its whole category list, so categories the package's listing has and sites.json doesn't (added by
+// hand on the site, or by its moderators) go along, or the release could take them off. A new package has none.
+static async Task<string[]> KeepListed(HttpClient http, string site, string packageUrl, string community,
+    Dictionary<string, string> keyByName, string[] categories, Func<string, bool>? skip = null)
+{
+    var package = await Call(http, site, Get(packageUrl), missingIsNull: true);
+    var listing = package?["community_listings"]?.AsArray().FirstOrDefault(l => (string?)l?["community"] == community);
+    IEnumerable<string> listed = listing?["categories"]?.AsArray().Select(c => (string)c!) ?? [];
+    string[] kept = [.. listed
+        .Where(n => skip?.Invoke(n) != true && keyByName.ContainsKey(n))
+        .Select(n => keyByName[n])
+        .Where(k => !categories.Contains(k))
+        .Distinct()];
+    if (kept.Length > 0)
+    {
+        Console.WriteLine($"{site}: keeps {string.Join(", ", kept)} from the listing (not in tools/release/sites.json).");
+    }
+
+    return [.. categories, .. kept];
 }
 
 // Uploads the zip in the parts the site asks for and returns the upload's id; an upload that fails is called off.
