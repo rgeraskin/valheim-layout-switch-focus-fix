@@ -1,8 +1,8 @@
 {
   "name": "LayoutSwitchFocusFix",
-  "version_number": "0.1.1",
+  "version_number": "0.1.2",
   "website_url": "https://github.com/rgeraskin/valheim-layout-switch-focus-fix",
-  "description": "Keyboard layout focus fix: a layout switch (Alt+Shift, Win+Space, Caps Lock) no longer drops the text field you type in: chat, console, map pins, signs, portals, build/craft search, other mods. Фикс потери фокуса при смене раскладки",
+  "description": "Keyboard layout focus fix: a layout switch (Alt+Shift, Win+Space, Caps Lock) no longer drops the text field you type in: chat, console, map pins, signs, portals, search, other mods. Фикс потери фокуса при смене раскладки",
   "dependencies": [
     "denikson-BepInExPack_Valheim-5.4.2351"
   ]
