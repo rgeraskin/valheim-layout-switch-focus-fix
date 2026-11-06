@@ -15,6 +15,8 @@ In vanilla Valheim, switching the keyboard layout while typing (Alt+Shift, Win+S
 
 This mod fixes the cause, so the field simply keeps focus and you keep typing in the new layout.
 
+**Using [Valheim Community Patch](https://thunderstore.io/c/valheim/p/MidnightMods/ValheimCommunityPatch/)?** You don't need this mod: it was merged into Valheim Community Patch in version 0.42.0 and is on by default there (`Fix Layout Switch Focus`).
+
 ### What's going on
 
 A layout switch makes Unity's Input System report a keyboard *configuration change*. Valheim treats every such change as a switch between keyboard and gamepad, and the build menu answers it by clearing the UI selection, which takes keyboard focus away from whatever field you're in. The mod lets the build menu do everything it did except that, and only while you're typing with the keyboard. Switching to a gamepad behaves as before.
@@ -39,6 +41,8 @@ A layout switch makes Unity's Input System report a keyboard *configuration chan
 - поля ввода любых других модов
 
 Мод устраняет причину: поле просто не теряет фокус, и вы продолжаете печатать в новой раскладке.
+
+**Используете [Valheim Community Patch](https://thunderstore.io/c/valheim/p/MidnightMods/ValheimCommunityPatch/)?** Этот мод вам не нужен: он вошёл в Valheim Community Patch в версии 0.42.0 и включён там по умолчанию (`Fix Layout Switch Focus`).
 
 ### В чём дело
 

@@ -12,6 +12,8 @@ In vanilla Valheim, switching the keyboard layout while typing (Alt+Shift, Win+S
 [/list]
 This mod fixes the cause, so the field simply keeps focus and you keep typing in the new layout.
 
+[b]Using [url=https://thunderstore.io/c/valheim/p/MidnightMods/ValheimCommunityPatch/]Valheim Community Patch[/url]?[/b] You don't need this mod: it was merged into Valheim Community Patch in version 0.42.0 and is on by default there ([font=Courier New]Fix Layout Switch Focus[/font]).
+
 [size=4][b]What's going on[/b][/size]
 A layout switch makes Unity's Input System report a keyboard [i]configuration change[/i]. Valheim treats every such change as a switch between keyboard and gamepad, and the build menu answers it by clearing the UI selection, which takes keyboard focus away from whatever field you're in. The mod lets the build menu do everything it did except that, and only while you're typing with the keyboard. Switching to a gamepad behaves as before.
 
@@ -41,6 +43,8 @@ Source code and issues: [url=https://github.com/rgeraskin/valheim-layout-switch-
 [*]поля ввода любых других модов
 [/list]
 Мод устраняет причину: поле просто не теряет фокус, и вы продолжаете печатать в новой раскладке.
+
+[b]Используете [url=https://thunderstore.io/c/valheim/p/MidnightMods/ValheimCommunityPatch/]Valheim Community Patch[/url]?[/b] Этот мод вам не нужен: он вошёл в Valheim Community Patch в версии 0.42.0 и включён там по умолчанию ([font=Courier New]Fix Layout Switch Focus[/font]).
 
 [b]В чём дело.[/b] При смене раскладки Input System в Unity сообщает об [i]изменении конфигурации[/i] клавиатуры. Valheim принимает любое такое изменение за переключение между клавиатурой и геймпадом, и меню строительства в ответ сбрасывает выделение в интерфейсе, а вместе с ним и фокус с поля ввода. Мод оставляет меню строительства всё, кроме этого сброса, и только пока вы печатаете с клавиатуры. Переключение на геймпад работает как раньше.
 

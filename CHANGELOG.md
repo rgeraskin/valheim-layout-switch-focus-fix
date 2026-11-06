@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.3
+
+- This mod was merged into Valheim Community Patch in version 0.42.0, so you don't need it if you use that: the description now says so. No code changes.
+
 ## 0.1.2
 
 - The 0.1.1 description, shortened so Hexium takes it. No code changes.
