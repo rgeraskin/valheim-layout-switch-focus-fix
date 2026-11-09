@@ -29,6 +29,10 @@ A layout switch makes Unity's Input System report a keyboard *configuration chan
 - Works alongside ConsoleFix and other input mods.
 - Config `BepInEx/config/rgeraskin.LayoutSwitchFocusFix.cfg`: `Enabled`, and `Debug.Log` to log layout changes and every focus loss with its cause (helps with bug reports).
 
+### Made with AI
+
+This mod — code, images and this text — was made entirely with AI, and tested in the game.
+
 ## Русская версия
 
 В ванильном Valheim смена раскладки во время ввода (Alt+Shift, Win+Space, Ctrl+Space, Caps Lock или любая другая комбинация) сбрасывает фокус с поля ввода: следующие нажатия уходят в игру, приходится заново кликать в поле. Это происходит везде:
@@ -55,3 +59,7 @@ A layout switch makes Unity's Input System report a keyboard *configuration chan
 - Проверен на Windows и macOS. На Linux работает так же, если игра там замечает смену раскладки; если нет, то и чинить нечего.
 - Совместим с ConsoleFix и другими модами ввода.
 - Конфиг `BepInEx/config/rgeraskin.LayoutSwitchFocusFix.cfg`: `Enabled` и `Debug.Log`, чтобы писать в лог смены раскладки и каждую потерю фокуса с её причиной (пригодится для баг-репортов).
+
+### Сделано с ИИ
+
+Этот мод — код, картинки и этот текст — целиком сделан с помощью ИИ и проверен в игре.
