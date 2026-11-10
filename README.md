@@ -29,6 +29,10 @@ A layout switch makes Unity's Input System report a keyboard *configuration chan
 - Works alongside ConsoleFix and other input mods.
 - Config `BepInEx/config/rgeraskin.LayoutSwitchFocusFix.cfg`: `Enabled`, and `Debug.Log` to log layout changes and every focus loss with its cause (helps with bug reports).
 
+### Bugs and ideas
+
+Found a bug or have an idea? Tell me on the [GitHub issues page](https://github.com/rgeraskin/valheim-layout-switch-focus-fix/issues) or in the chat for my mods, on [Discord](https://discord.gg/hxpuTQF2Bb) or [Telegram](https://t.me/+NwReoOS9x7hhYjgy).
+
 ### Made with AI
 
 This mod — code, images and this text — was made entirely with AI, and tested in the game.
@@ -59,6 +63,10 @@ This mod — code, images and this text — was made entirely with AI, and teste
 - Проверен на Windows и macOS. На Linux работает так же, если игра там замечает смену раскладки; если нет, то и чинить нечего.
 - Совместим с ConsoleFix и другими модами ввода.
 - Конфиг `BepInEx/config/rgeraskin.LayoutSwitchFocusFix.cfg`: `Enabled` и `Debug.Log`, чтобы писать в лог смены раскладки и каждую потерю фокуса с её причиной (пригодится для баг-репортов).
+
+### Баги и идеи
+
+Нашли баг или есть идея? Пишите на [странице GitHub issues](https://github.com/rgeraskin/valheim-layout-switch-focus-fix/issues) или в чат моих модов, в [Discord](https://discord.gg/hxpuTQF2Bb) или [Telegram](https://t.me/+NwReoOS9x7hhYjgy).
 
 ### Сделано с ИИ
 
